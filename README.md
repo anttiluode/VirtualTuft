@@ -1,5 +1,7 @@
 # VirtualTuft — time as memory
 
+**Gate 2 (Nov 23):** [Hidden Hénon state / odd-symmetry audit](GATE2.md) · [code](gate2.py) · [20-trial JSON receipt](results/gate2.json). Fixed random bias restored nonlinear even-order capacity: on noisy Hénon combined feedback `0.063` MAE, leak-only `0.073`, but a proper polynomial-history model scores `0.037`. On delayed quadratic d3: `0.075` vs `0.099`, but explicit history `0.031`. The returning echo contributes, yet it does not outperform nonlinear direct history. Local homeostatic adaptation fails. Gate 0 and 1 remain unchanged.
+
 **Gate 1 (Nov 23): Independent Neon audit follow-up.** [Methods, controls, seven-world results and stop conditions](GATE1.md) · [causal benchmark code](gate1.py) · [raw JSON receipt](results/gate1.json). A centered polynomial-history baseline **beats** the delayed reservoir on chaotic logistic-map data (test MAE 0.0164 vs 0.0856), and the selected explicit feedback gain is zero on all three chaotic seeds. Gate 0 is preserved as an earlier experiment, not quietly rewritten. The gain-adaptation hypothesis remains **unsupported**.
 
 **Gate 0 | November 23, 2026.** A single nonlinear dynamical node, sampled into 50 sequential virtual time slots, predicts synthetic drop intervals. The goal is to measure when a physical-like delay loop is useful **and when learning its feedback makes it worse**. This is an abstract computational experiment, *not* a model of an actual apical tuft or a demonstration of biological anticipation.
