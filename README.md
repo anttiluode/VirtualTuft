@@ -1,5 +1,7 @@
 # VirtualTuft — time as memory
 
+**Gate 1 (Nov 23): Independent Neon audit follow-up.** [Methods, controls, seven-world results and stop conditions](GATE1.md) · [causal benchmark code](gate1.py) · [raw JSON receipt](results/gate1.json). A centered polynomial-history baseline **beats** the delayed reservoir on chaotic logistic-map data (test MAE 0.0164 vs 0.0856), and the selected explicit feedback gain is zero on all three chaotic seeds. Gate 0 is preserved as an earlier experiment, not quietly rewritten. The gain-adaptation hypothesis remains **unsupported**.
+
 **Gate 0 | November 23, 2026.** A single nonlinear dynamical node, sampled into 50 sequential virtual time slots, predicts synthetic drop intervals. The goal is to measure when a physical-like delay loop is useful **and when learning its feedback makes it worse**. This is an abstract computational experiment, *not* a model of an actual apical tuft or a demonstration of biological anticipation.
 
 **[Open the offline knob-turning visualizer](index.html)** — open `index.html` in a browser, no server, dependencies, or GPU. For GitHub Pages, publish `main` / root. The graph compares the observed interval with a forecast issued *before* that interval arrived. The heatmap shows the same nonlinear node's 50 successive time slots. The web interface uses an online LMS readout and is **not** the frozen Python benchmark.

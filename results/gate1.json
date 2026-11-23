@@ -1,0 +1,1463 @@
+{
+  "experiment": "VirtualTuft Gate 1 / Neon audit response",
+  "status": "synthetic",
+  "freeze": {
+    "seeds": [
+      11,
+      17,
+      29
+    ],
+    "n": 1050,
+    "noise": 0.008,
+    "ridge_penalties": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "online_eta_choices": [
+      0.005,
+      0.02,
+      0.08,
+      0.25
+    ],
+    "feedback_gains": [
+      0.0,
+      0.35,
+      0.7,
+      0.9
+    ],
+    "delays": [
+      1,
+      2,
+      3
+    ],
+    "readout_online_eta": "selected on prequential validation only",
+    "adapt_gain_eta": 0.012,
+    "nonlinear_history_features": 50
+  },
+  "summary_test_mae": {
+    "periodic": {
+      "clock_mean": 0.006555,
+      "persistence": 0.009182,
+      "linear_taps": 0.006792,
+      "quadratic_taps": 0.006601,
+      "no_recurrence": 0.006575,
+      "fixed_loop": 0.006676,
+      "fixed_online": 0.006667,
+      "adaptive_loop": 0.006668,
+      "adaptive_online": 0.006662
+    },
+    "period2": {
+      "clock_mean": 0.085785,
+      "persistence": 0.171553,
+      "linear_taps": 0.006791,
+      "quadratic_taps": 0.006967,
+      "no_recurrence": 0.006687,
+      "fixed_loop": 0.006903,
+      "fixed_online": 0.006912,
+      "adaptive_loop": 0.008679,
+      "adaptive_online": 0.008375
+    },
+    "chaotic": {
+      "clock_mean": 0.163021,
+      "persistence": 0.285034,
+      "linear_taps": 0.12738,
+      "quadratic_taps": 0.016413,
+      "no_recurrence": 0.102133,
+      "fixed_loop": 0.085609,
+      "fixed_online": 0.087976,
+      "adaptive_loop": 0.089239,
+      "adaptive_online": 0.091382
+    },
+    "draining": {
+      "clock_mean": 0.073123,
+      "persistence": 0.009272,
+      "linear_taps": 0.008764,
+      "quadratic_taps": 0.007309,
+      "no_recurrence": 0.009178,
+      "fixed_loop": 0.007393,
+      "fixed_online": 0.007385,
+      "adaptive_loop": 0.007567,
+      "adaptive_online": 0.007493
+    },
+    "switch": {
+      "clock_mean": 0.1611,
+      "persistence": 0.280869,
+      "linear_taps": 0.179631,
+      "quadratic_taps": 0.174325,
+      "no_recurrence": 0.09692,
+      "fixed_loop": 0.146187,
+      "fixed_online": 0.14517,
+      "adaptive_loop": 0.146484,
+      "adaptive_online": 0.147752
+    },
+    "switch_repeating": {
+      "clock_mean": 0.082887,
+      "persistence": 0.14686,
+      "linear_taps": 0.0569,
+      "quadratic_taps": 0.017451,
+      "no_recurrence": 0.033806,
+      "fixed_loop": 0.038192,
+      "fixed_online": 0.035998,
+      "adaptive_loop": 0.037509,
+      "adaptive_online": 0.036792
+    },
+    "shuffled": {
+      "clock_mean": 0.162326,
+      "persistence": 0.200222,
+      "linear_taps": 0.166389,
+      "quadratic_taps": 0.167938,
+      "no_recurrence": 0.163536,
+      "fixed_loop": 0.167303,
+      "fixed_online": 0.164373,
+      "adaptive_loop": 0.162253,
+      "adaptive_online": 0.162884
+    }
+  },
+  "trials": [
+    {
+      "world": "periodic",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6433307066396186,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.006510356223508125
+        },
+        "persistence": {
+          "test_mae": 0.009023786669496244
+        },
+        "linear_taps": {
+          "val_mae": 0.0072468282474739435,
+          "test_mae": 0.006952712811902703,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.006875148227374454,
+          "test_mae": 0.006625091012962424,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.00684829015708278,
+          "test_mae": 0.006526175442346295,
+          "ridge": 1.0
+        },
+        "fixed_loop": {
+          "val_mae": 0.006853200562054595,
+          "test_mae": 0.006630202885248601,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.006843284446885098,
+          "test_mae": 0.006560032983560464,
+          "online_eta": 0.02
+        },
+        "adaptive_loop": {
+          "test_mae": 0.00663009962177217,
+          "val_mae": 0.006853242165887163,
+          "start_gain": 0.0,
+          "final_gain": 0.0005801892514450845,
+          "echo_predictor_weight": -0.001026557360688058,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.006843294189546197,
+          "test_mae": 0.0065599086514680155,
+          "online_eta": 0.02
+        }
+      }
+    },
+    {
+      "world": "periodic",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6429229247749201,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.7,
+        "fixed_delay_cycles": 1,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.006823259449142383
+        },
+        "persistence": {
+          "test_mae": 0.009624502627370007
+        },
+        "linear_taps": {
+          "val_mae": 0.006746104185630753,
+          "test_mae": 0.006910878811560538,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.006633529524570795,
+          "test_mae": 0.0068161664839230815,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.00658328085709228,
+          "test_mae": 0.006822135491973818,
+          "ridge": 1.0
+        },
+        "fixed_loop": {
+          "val_mae": 0.006647156449159778,
+          "test_mae": 0.007032060563718615,
+          "gain": 0.7,
+          "delay": 1,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.006643414126167089,
+          "test_mae": 0.0070841861689771735,
+          "online_eta": 0.02
+        },
+        "adaptive_loop": {
+          "test_mae": 0.007006775126297074,
+          "val_mae": 0.006686311357049847,
+          "start_gain": 0.7,
+          "final_gain": 0.6994896292153202,
+          "echo_predictor_weight": -0.0012759269617011295,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.006674455526398167,
+          "test_mae": 0.007070444346192645,
+          "online_eta": 0.02
+        }
+      }
+    },
+    {
+      "world": "periodic",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6431133452520141,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.006332102244636814
+        },
+        "persistence": {
+          "test_mae": 0.008898876400877116
+        },
+        "linear_taps": {
+          "val_mae": 0.006852812717580506,
+          "test_mae": 0.006511091905767361,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.006316260547938364,
+          "test_mae": 0.006360578830339289,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.006369450712967187,
+          "test_mae": 0.00637694012483558,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.006315200752876814,
+          "test_mae": 0.006367135159116412,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.006312692373961848,
+          "test_mae": 0.006355381838989706,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.006367127269575726,
+          "val_mae": 0.006315194082654249,
+          "start_gain": 0.0,
+          "final_gain": 0.00016523404135239836,
+          "echo_predictor_weight": -0.0021399752198692605,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.00631266541517986,
+          "test_mae": 0.006355386328088694,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "period2",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6438207496310052,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.35,
+        "fixed_delay_cycles": 2,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.08625061422937517
+        },
+        "persistence": {
+          "test_mae": 0.1725607073994818
+        },
+        "linear_taps": {
+          "val_mae": 0.007182825777961258,
+          "test_mae": 0.0069043262281087425,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.007054084586704237,
+          "test_mae": 0.006999085082082975,
+          "ridge": 0.01
+        },
+        "no_recurrence": {
+          "val_mae": 0.0069724877792460985,
+          "test_mae": 0.006616818110760461,
+          "ridge": 0.1
+        },
+        "fixed_loop": {
+          "val_mae": 0.007357926019174619,
+          "test_mae": 0.006971097614740085,
+          "gain": 0.35,
+          "delay": 2,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.007364380460302618,
+          "test_mae": 0.006969752405151056,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.008622992587327865,
+          "val_mae": 0.008838677801315356,
+          "start_gain": 0.35,
+          "final_gain": 0.5890366238296936,
+          "echo_predictor_weight": 0.5975915595742325,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.008451032412005345,
+          "test_mae": 0.008518286486403612,
+          "online_eta": 0.25
+        }
+      }
+    },
+    {
+      "world": "period2",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6434129677663067,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.35,
+        "fixed_delay_cycles": 2,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.0855232382837529
+        },
+        "persistence": {
+          "test_mae": 0.170953463033905
+        },
+        "linear_taps": {
+          "val_mae": 0.006780546600369979,
+          "test_mae": 0.006992916999866397,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.006973102747757594,
+          "test_mae": 0.0071579794061338575,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.006726548073849211,
+          "test_mae": 0.0068927160403216,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.006880211463799839,
+          "test_mae": 0.006903088332610092,
+          "gain": 0.35,
+          "delay": 2,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.0069002792154593,
+          "test_mae": 0.006916430143681914,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.008466666300501621,
+          "val_mae": 0.008718617157867092,
+          "start_gain": 0.35,
+          "final_gain": 0.594055451295734,
+          "echo_predictor_weight": 0.610138628239332,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.008203585315001148,
+          "test_mae": 0.008122600105109028,
+          "online_eta": 0.08
+        }
+      }
+    },
+    {
+      "world": "period2",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6436033882434009,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.35,
+        "fixed_delay_cycles": 2,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.08558013738710311
+        },
+        "persistence": {
+          "test_mae": 0.17114592791293554
+        },
+        "linear_taps": {
+          "val_mae": 0.006756725665457384,
+          "test_mae": 0.006477248981355617,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.006772083866582579,
+          "test_mae": 0.006742824796509934,
+          "ridge": 0.01
+        },
+        "no_recurrence": {
+          "val_mae": 0.006583332819253961,
+          "test_mae": 0.006550742105071273,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.006981284947154572,
+          "test_mae": 0.006836310206488126,
+          "gain": 0.35,
+          "delay": 2,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.006989942442346099,
+          "test_mae": 0.0068496713144844965,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.008948020043228378,
+          "val_mae": 0.0091992038816117,
+          "start_gain": 0.35,
+          "final_gain": 0.6077778649956908,
+          "echo_predictor_weight": 0.6444446624892278,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.008514765238747697,
+          "test_mae": 0.008485605582013346,
+          "online_eta": 0.08
+        }
+      }
+    },
+    {
+      "world": "chaotic",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6061655391405906,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.1582882604372936
+        },
+        "persistence": {
+          "test_mae": 0.28061093534504006
+        },
+        "linear_taps": {
+          "val_mae": 0.12344389894030819,
+          "test_mae": 0.1232438448140739,
+          "ridge": 0.01
+        },
+        "quadratic_taps": {
+          "val_mae": 0.015859896569796743,
+          "test_mae": 0.01776376914366547,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.09186152035877643,
+          "test_mae": 0.10323022045319774,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.08001446342953429,
+          "test_mae": 0.08658769956777491,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.08045796595241299,
+          "test_mae": 0.08787973983743222,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.08944479982424784,
+          "val_mae": 0.08253150359883775,
+          "start_gain": 0.0,
+          "final_gain": 0.041063234917197274,
+          "echo_predictor_weight": -0.5829874682226462,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.0830370911786148,
+          "test_mae": 0.09061363450279208,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "chaotic",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6016103073186603,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.16602282073560262
+        },
+        "persistence": {
+          "test_mae": 0.2906350373054639
+        },
+        "linear_taps": {
+          "val_mae": 0.11854395346939771,
+          "test_mae": 0.12584895524475734,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.017305305328657723,
+          "test_mae": 0.016444760272696896,
+          "ridge": 0.01
+        },
+        "no_recurrence": {
+          "val_mae": 0.10376027186014246,
+          "test_mae": 0.11274237724440278,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.08505870563589701,
+          "test_mae": 0.08522017850747961,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.08540921597254189,
+          "test_mae": 0.08754167631709038,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.08892834284711326,
+          "val_mae": 0.0874222485288853,
+          "start_gain": 0.0,
+          "final_gain": 0.03086518558228109,
+          "echo_predictor_weight": -0.5956429795291623,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.08782730698608758,
+          "test_mae": 0.09107970286826794,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "chaotic",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6147522526484389,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.16475099360291934
+        },
+        "persistence": {
+          "test_mae": 0.2838572794786723
+        },
+        "linear_taps": {
+          "val_mae": 0.12751769771646998,
+          "test_mae": 0.13304816130529074,
+          "ridge": 0.01
+        },
+        "quadratic_taps": {
+          "val_mae": 0.01584877196922268,
+          "test_mae": 0.01502961637651326,
+          "ridge": 0.1
+        },
+        "no_recurrence": {
+          "val_mae": 0.08399855554015498,
+          "test_mae": 0.09042763964076488,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.08554798133469943,
+          "test_mae": 0.08501958316557173,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.08667571532202285,
+          "test_mae": 0.08850774675976922,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.08934456498280764,
+          "val_mae": 0.0866431450898752,
+          "start_gain": 0.0,
+          "final_gain": 0.055538421770452207,
+          "echo_predictor_weight": -0.5685297489839963,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.08776325169848269,
+          "test_mae": 0.09245286144144561,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "draining",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6739643786294224,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.07278370614177603
+        },
+        "persistence": {
+          "test_mae": 0.009082927516537232
+        },
+        "linear_taps": {
+          "val_mae": 0.012847511861551121,
+          "test_mae": 0.008632820481429904,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.011092033642034952,
+          "test_mae": 0.007349444065069625,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.012496966219107801,
+          "test_mae": 0.008952969465584108,
+          "ridge": 1.0
+        },
+        "fixed_loop": {
+          "val_mae": 0.011233467612724193,
+          "test_mae": 0.0074632196811479186,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.0113606865988798,
+          "test_mae": 0.00743456571460107,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.007608643076259172,
+          "val_mae": 0.011839913442006519,
+          "start_gain": 0.0,
+          "final_gain": 0.15446731516225054,
+          "echo_predictor_weight": 0.38225119500483545,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.011782964685823067,
+          "test_mae": 0.0074990798037774834,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "draining",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6736183960148188,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.0732438292359281
+        },
+        "persistence": {
+          "test_mae": 0.009654200570774343
+        },
+        "linear_taps": {
+          "val_mae": 0.012120577237049948,
+          "test_mae": 0.009292116104508624,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.01291340623965339,
+          "test_mae": 0.007744482172329979,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.011563802568690076,
+          "test_mae": 0.009640962692525769,
+          "ridge": 1.0
+        },
+        "fixed_loop": {
+          "val_mae": 0.011071283593532877,
+          "test_mae": 0.0077273053354248306,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.011095003669310854,
+          "test_mae": 0.007743432541820972,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.007785195697164268,
+          "val_mae": 0.011128123163378792,
+          "start_gain": 0.0,
+          "final_gain": 0.15349695318144507,
+          "echo_predictor_weight": 0.38313829976345365,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.011038068526488485,
+          "test_mae": 0.007733723734122408,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "draining",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.673791029635374,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.07334091871234012
+        },
+        "persistence": {
+          "test_mae": 0.0090788979083412
+        },
+        "linear_taps": {
+          "val_mae": 0.012771567800845797,
+          "test_mae": 0.008366442033991867,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.011041381729694792,
+          "test_mae": 0.006832862595788838,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.011781529988828953,
+          "test_mae": 0.008941107141295748,
+          "ridge": 0.1
+        },
+        "fixed_loop": {
+          "val_mae": 0.010887350166516027,
+          "test_mae": 0.006989696249163674,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.010987318942171998,
+          "test_mae": 0.006977151939922003,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.007308039275269164,
+          "val_mae": 0.011280206128963558,
+          "start_gain": 0.0,
+          "final_gain": 0.15508420871205517,
+          "echo_predictor_weight": 0.3842096825761001,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.011137169252171253,
+          "test_mae": 0.007247293397025317,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "switch",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6437946805989019,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "zero-shot chaos; test never has seen chaos in training",
+      "selection": {
+        "fixed_gain": 0.35,
+        "fixed_delay_cycles": 2,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.15368882725647565
+        },
+        "persistence": {
+          "test_mae": 0.26682183612142757
+        },
+        "linear_taps": {
+          "val_mae": 0.10831449769807726,
+          "test_mae": 0.16243328279309951,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.11435814808484199,
+          "test_mae": 0.15964751162640967,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.06356515275640166,
+          "test_mae": 0.094709669658304,
+          "ridge": 0.1
+        },
+        "fixed_loop": {
+          "val_mae": 0.0942361571138992,
+          "test_mae": 0.14102989441903763,
+          "gain": 0.35,
+          "delay": 2,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.09353029007840274,
+          "test_mae": 0.14201033251343095,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.14315755992112691,
+          "val_mae": 0.12046363774276729,
+          "start_gain": 0.35,
+          "final_gain": 0.44886095462565906,
+          "echo_predictor_weight": 0.2471523865641469,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.10511012887246002,
+          "test_mae": 0.1475253057277573,
+          "online_eta": 0.08
+        }
+      }
+    },
+    {
+      "world": "switch",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6430860408180179,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "zero-shot chaos; test never has seen chaos in training",
+      "selection": {
+        "fixed_gain": 0.35,
+        "fixed_delay_cycles": 2,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.155956746341112
+        },
+        "persistence": {
+          "test_mae": 0.27413121010639746
+        },
+        "linear_taps": {
+          "val_mae": 0.11823079504529378,
+          "test_mae": 0.17265908401706143,
+          "ridge": 0.01
+        },
+        "quadratic_taps": {
+          "val_mae": 0.11770367468086736,
+          "test_mae": 0.18283509536917386,
+          "ridge": 0.1
+        },
+        "no_recurrence": {
+          "val_mae": 0.06633056235841243,
+          "test_mae": 0.09697662932194419,
+          "ridge": 1.0
+        },
+        "fixed_loop": {
+          "val_mae": 0.09758797088802952,
+          "test_mae": 0.13594148769346237,
+          "gain": 0.35,
+          "delay": 2,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.09636911817492853,
+          "test_mae": 0.13325258966529602,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.13431018037428638,
+          "val_mae": 0.10208051107770406,
+          "start_gain": 0.35,
+          "final_gain": 0.451619871779479,
+          "echo_predictor_weight": 0.2540496794486973,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.10134992856743612,
+          "test_mae": 0.13533580370103343,
+          "online_eta": 0.02
+        }
+      }
+    },
+    {
+      "world": "switch",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6435906209410666,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "zero-shot chaos; test never has seen chaos in training",
+      "selection": {
+        "fixed_gain": 0.35,
+        "fixed_delay_cycles": 2,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.17365388574674978
+        },
+        "persistence": {
+          "test_mae": 0.30165535879366084
+        },
+        "linear_taps": {
+          "val_mae": 0.12524951846650834,
+          "test_mae": 0.20380178980184008,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.11303496392586473,
+          "test_mae": 0.18049265880236215,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.06548667244799171,
+          "test_mae": 0.09907283092085772,
+          "ridge": 0.1
+        },
+        "fixed_loop": {
+          "val_mae": 0.0989758531753714,
+          "test_mae": 0.16158875303048983,
+          "gain": 0.35,
+          "delay": 2,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.09803469495473928,
+          "test_mae": 0.16024747405947926,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.16198347905775648,
+          "val_mae": 0.11083286131011302,
+          "start_gain": 0.35,
+          "final_gain": 0.39774554714689475,
+          "echo_predictor_weight": 0.11936386786723557,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.1036579592048452,
+          "test_mae": 0.1603934559656954,
+          "online_eta": 0.08
+        }
+      }
+    },
+    {
+      "world": "switch_repeating",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6288559999507798,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "repeated within-split transitions",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.08549870458350979
+        },
+        "persistence": {
+          "test_mae": 0.15135106945559154
+        },
+        "linear_taps": {
+          "val_mae": 0.05307068054712758,
+          "test_mae": 0.05657022689932222,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.01745196163616334,
+          "test_mae": 0.016567657441003705,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.032480303519936894,
+          "test_mae": 0.035414253755771834,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.040462272317542826,
+          "test_mae": 0.03795320037531143,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.03689249240626467,
+          "test_mae": 0.03604479803840328,
+          "online_eta": 0.02
+        },
+        "adaptive_loop": {
+          "test_mae": 0.03673934667117656,
+          "val_mae": 0.03968101621454196,
+          "start_gain": 0.0,
+          "final_gain": 0.007416701842374188,
+          "echo_predictor_weight": -0.715728747916714,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.03717190948417011,
+          "test_mae": 0.03684149907243798,
+          "online_eta": 0.02
+        }
+      }
+    },
+    {
+      "world": "switch_repeating",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6294181620585315,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "repeated within-split transitions",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.01
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.07913149582428837
+        },
+        "persistence": {
+          "test_mae": 0.13860819762724005
+        },
+        "linear_taps": {
+          "val_mae": 0.05934140224372396,
+          "test_mae": 0.06043541574444835,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.01992497436484053,
+          "test_mae": 0.019494970874747896,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.03227708868790002,
+          "test_mae": 0.0361043903000912,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.037095805788490456,
+          "test_mae": 0.04113023509541831,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.01
+        },
+        "fixed_online": {
+          "val_mae": 0.03424654912401694,
+          "test_mae": 0.03728546768137835,
+          "online_eta": 0.02
+        },
+        "adaptive_loop": {
+          "test_mae": 0.03984161444585684,
+          "val_mae": 0.03606624495941289,
+          "start_gain": 0.0,
+          "final_gain": 0.007941215264380371,
+          "echo_predictor_weight": -0.682915345739416,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.03473763525739802,
+          "test_mae": 0.038265805781807646,
+          "online_eta": 0.02
+        }
+      }
+    },
+    {
+      "world": "switch_repeating",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6305289189942643,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "repeated within-split transitions",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.08402974439257045
+        },
+        "persistence": {
+          "test_mae": 0.1506200540065188
+        },
+        "linear_taps": {
+          "val_mae": 0.0741834859711651,
+          "test_mae": 0.05369392681609756,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.01626162420597859,
+          "test_mae": 0.016290818833840304,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.03118155988907256,
+          "test_mae": 0.0298990410331815,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.035577842471289985,
+          "test_mae": 0.035491400315566336,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.03499554318073563,
+          "test_mae": 0.034664597702225824,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.03594637078227598,
+          "val_mae": 0.03614422114211172,
+          "start_gain": 0.0,
+          "final_gain": 0.00427396938879868,
+          "echo_predictor_weight": -0.7368388527620433,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.035902886978254445,
+          "test_mae": 0.03526743402889026,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "shuffled",
+      "seed": 11,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6034650369485343,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.7,
+        "fixed_delay_cycles": 2,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.1661192984165304
+        },
+        "persistence": {
+          "test_mae": 0.1948710788216109
+        },
+        "linear_taps": {
+          "val_mae": 0.16023015759756248,
+          "test_mae": 0.1694191997883789,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.15770247540618346,
+          "test_mae": 0.16973077233527353,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.1548873846623727,
+          "test_mae": 0.16708241285749859,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.1557400121591346,
+          "test_mae": 0.17843844073666718,
+          "gain": 0.7,
+          "delay": 2,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.1537783780715043,
+          "test_mae": 0.16988797599259015,
+          "online_eta": 0.08
+        },
+        "adaptive_loop": {
+          "test_mae": 0.16442732898700343,
+          "val_mae": 0.16145618538326803,
+          "start_gain": 0.7,
+          "final_gain": 0.7246416356167966,
+          "echo_predictor_weight": 0.06160408904199288,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.15853861505833194,
+          "test_mae": 0.16635325700926099,
+          "online_eta": 0.08
+        }
+      }
+    },
+    {
+      "world": "shuffled",
+      "seed": 17,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6105893694160316,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 1.0
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.16298654787314412
+        },
+        "persistence": {
+          "test_mae": 0.2012620915438733
+        },
+        "linear_taps": {
+          "val_mae": 0.17462425001832652,
+          "test_mae": 0.17063291818674367,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.16849933596639044,
+          "test_mae": 0.16896727045976523,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.1693812312758778,
+          "test_mae": 0.16412309573705713,
+          "ridge": 1.0
+        },
+        "fixed_loop": {
+          "val_mae": 0.1667866687355869,
+          "test_mae": 0.16371106147707637,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 1.0
+        },
+        "fixed_online": {
+          "val_mae": 0.1671039631449294,
+          "test_mae": 0.16401316704679997,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.16296290127567117,
+          "val_mae": 0.1666624776758725,
+          "start_gain": 0.0,
+          "final_gain": 0.08312002700190602,
+          "echo_predictor_weight": 0.01554704660288633,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.166933540182902,
+          "test_mae": 0.16332840874172597,
+          "online_eta": 0.005
+        }
+      }
+    },
+    {
+      "world": "shuffled",
+      "seed": 29,
+      "n": 1050,
+      "noise_sd": 0.008,
+      "train_end_forecast": 628,
+      "val_end_forecast": 838,
+      "train_only_center": 0.6029581666886399,
+      "protocol": "1-step causal forecast, train 60%, val 20%, test 20%, first 80 wash-in",
+      "switch_interpretation": "stationary or predefined reset",
+      "selection": {
+        "fixed_gain": 0.0,
+        "fixed_delay_cycles": 1,
+        "ridge": 0.1
+      },
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.15787141941924704
+        },
+        "persistence": {
+          "test_mae": 0.20453347735646446
+        },
+        "linear_taps": {
+          "val_mae": 0.16108471816354408,
+          "test_mae": 0.15911554082218995,
+          "ridge": 1.0
+        },
+        "quadratic_taps": {
+          "val_mae": 0.15846267359614505,
+          "test_mae": 0.16511647568675497,
+          "ridge": 1.0
+        },
+        "no_recurrence": {
+          "val_mae": 0.15715888058230196,
+          "test_mae": 0.15940395230081272,
+          "ridge": 0.01
+        },
+        "fixed_loop": {
+          "val_mae": 0.15683994581619404,
+          "test_mae": 0.1597593728604324,
+          "gain": 0.0,
+          "delay": 1,
+          "ridge": 0.1
+        },
+        "fixed_online": {
+          "val_mae": 0.1569744201487212,
+          "test_mae": 0.15921843194495547,
+          "online_eta": 0.005
+        },
+        "adaptive_loop": {
+          "test_mae": 0.15936903383057507,
+          "val_mae": 0.1572882680301175,
+          "start_gain": 0.0,
+          "final_gain": 0.07682998533088967,
+          "echo_predictor_weight": 0.024614299360891292,
+          "adapt_rate": 0.012
+        },
+        "adaptive_online": {
+          "val_mae": 0.15734383906993224,
+          "test_mae": 0.15897109795925557,
+          "online_eta": 0.005
+        }
+      }
+    }
+  ]
+}
