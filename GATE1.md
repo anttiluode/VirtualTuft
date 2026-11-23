@@ -24,7 +24,7 @@ Mean held-out test **MAE** in normalized interval units. Lower is better. Full p
 | World | Linear taps | Centered quadratic taps | No recurrence | Fixed loop | Adaptive loop | Fixed + online readout | Adaptive + online |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | periodic | 0.00679 | 0.00660 | **0.00658** | 0.00668 | 0.00667 | 0.00667 | 0.00666 |
-| period2 | **0.00679** | 0.00697 | 0.00669 | 0.00690 | 0.00868 | 0.00691 | 0.00838 |
+| period2 | 0.00679 | 0.00697 | **0.00669** | 0.00690 | 0.00868 | 0.00691 | 0.00838 |
 | chaotic | 0.12738 | **0.01641** | 0.10213 | 0.08561 | 0.08924 | 0.08798 | 0.09138 |
 | draining | 0.00876 | **0.00731** | 0.00918 | 0.00739 | 0.00757 | 0.00739 | 0.00749 |
 | switch (zero-shot chaos) | 0.17963 | 0.17433 | **0.09692** | 0.14619 | 0.14648 | 0.14517 | 0.14775 |
