@@ -1,0 +1,667 @@
+{
+  "experiment": "VirtualTuft Gate 0",
+  "status": "synthetic benchmark",
+  "note": "Not a biological neuron or demonstration of anticipation. MAE in interval units; lower is better.",
+  "config": {
+    "seeds": [
+      11,
+      17,
+      29
+    ],
+    "length": 1050,
+    "nodes": 50,
+    "noise_sd": 0.008,
+    "validation_selected_fixed_gains": [
+      0,
+      0.35,
+      0.7,
+      0.9
+    ],
+    "validation_selected_delays": [
+      1,
+      2,
+      3
+    ],
+    "ridge": 0.03
+  },
+  "summary_test_mae": {
+    "periodic": {
+      "clock_mean": 0.006555239305762441,
+      "persistence": 0.009182388565914456,
+      "linear_taps": 0.0065953997984518715,
+      "fixed_loop": 0.006596581892698972,
+      "adaptive_loop": 0.00660623722928233
+    },
+    "period2": {
+      "clock_mean": 0.08578466330007706,
+      "persistence": 0.17155336611544078,
+      "linear_taps": 0.0066861116956232055,
+      "fixed_loop": 0.00890331718020099,
+      "adaptive_loop": 0.008631365137806706
+    },
+    "chaotic": {
+      "clock_mean": 0.16302069159193852,
+      "persistence": 0.28503441737639207,
+      "linear_taps": 0.12739680570054696,
+      "fixed_loop": 0.05812119397437021,
+      "adaptive_loop": 0.10366072519589421
+    },
+    "draining": {
+      "clock_mean": 0.07312281803001475,
+      "persistence": 0.009272008665217591,
+      "linear_taps": 0.008695308662510717,
+      "fixed_loop": 0.008631261436615646,
+      "adaptive_loop": 0.008540640787287147
+    },
+    "switch": {
+      "clock_mean": 0.1610998197814458,
+      "persistence": 0.2808694683404953,
+      "linear_taps": 0.17323198555947839,
+      "fixed_loop": 0.1366853121487049,
+      "adaptive_loop": 0.14542826518597954
+    },
+    "shuffled": {
+      "clock_mean": 0.16232575523630718,
+      "persistence": 0.20022221590731623,
+      "linear_taps": 0.16639024963775087,
+      "fixed_loop": 0.17245791454042247,
+      "adaptive_loop": 0.1646709688386294
+    }
+  },
+  "trials": [
+    {
+      "world": "periodic",
+      "seed": 11,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.006510356223508125
+        },
+        "persistence": {
+          "test_mae": 0.009023786669496244
+        },
+        "linear_taps": {
+          "test_mae": 0.0066101395548904445,
+          "val_mae": 0.006964791394861766
+        },
+        "fixed_loop": {
+          "test_mae": 0.0065881659211643965,
+          "val_mae": 0.006847809731710266,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.006593189449311202,
+          "val_mae": 0.006852475717584426,
+          "start_gain": 0.0,
+          "final_gain": 0.37671218419734315,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "periodic",
+      "seed": 17,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.006823259449142383
+        },
+        "persistence": {
+          "test_mae": 0.009624502627370007
+        },
+        "linear_taps": {
+          "test_mae": 0.006828209791741777,
+          "val_mae": 0.006623165665357145
+        },
+        "fixed_loop": {
+          "test_mae": 0.00681948362673321,
+          "val_mae": 0.006563118476576936,
+          "gain": 0.7,
+          "delay_cycles": 3
+        },
+        "adaptive_loop": {
+          "test_mae": 0.0068400082876539404,
+          "val_mae": 0.006606200591654046,
+          "start_gain": 0.7,
+          "final_gain": 0.37638305737857664,
+          "delay_cycles": 3
+        }
+      }
+    },
+    {
+      "world": "periodic",
+      "seed": 29,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.006332102244636814
+        },
+        "persistence": {
+          "test_mae": 0.008898876400877116
+        },
+        "linear_taps": {
+          "test_mae": 0.006347850048723391,
+          "val_mae": 0.006523152859421666
+        },
+        "fixed_loop": {
+          "test_mae": 0.00638209613019931,
+          "val_mae": 0.006354957708744235,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.006385513950881848,
+          "val_mae": 0.0063561393202525756,
+          "start_gain": 0.0,
+          "final_gain": 0.37726427075754015,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "period2",
+      "seed": 11,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.08625061422937517
+        },
+        "persistence": {
+          "test_mae": 0.1725607073994818
+        },
+        "linear_taps": {
+          "test_mae": 0.006695273593210484,
+          "val_mae": 0.007013187866657803
+        },
+        "fixed_loop": {
+          "test_mae": 0.009833459184375955,
+          "val_mae": 0.008789168947220184,
+          "gain": 0.7,
+          "delay_cycles": 2
+        },
+        "adaptive_loop": {
+          "test_mae": 0.00910294070386507,
+          "val_mae": 0.008772912005919743,
+          "start_gain": 0.7,
+          "final_gain": 0.4380346579822088,
+          "delay_cycles": 2
+        }
+      }
+    },
+    {
+      "world": "period2",
+      "seed": 17,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.0855232382837529
+        },
+        "persistence": {
+          "test_mae": 0.170953463033905
+        },
+        "linear_taps": {
+          "test_mae": 0.006951325914216629,
+          "val_mae": 0.006711768053240874
+        },
+        "fixed_loop": {
+          "test_mae": 0.008468740613573387,
+          "val_mae": 0.00880056393801793,
+          "gain": 0.7,
+          "delay_cycles": 2
+        },
+        "adaptive_loop": {
+          "test_mae": 0.008533687632751703,
+          "val_mae": 0.009068609052754806,
+          "start_gain": 0.7,
+          "final_gain": 0.4375730609419281,
+          "delay_cycles": 2
+        }
+      }
+    },
+    {
+      "world": "period2",
+      "seed": 29,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.08558013738710311
+        },
+        "persistence": {
+          "test_mae": 0.17114592791293554
+        },
+        "linear_taps": {
+          "test_mae": 0.0064117355794425035,
+          "val_mae": 0.006584269706352427
+        },
+        "fixed_loop": {
+          "test_mae": 0.008407751742653628,
+          "val_mae": 0.008515805256142763,
+          "gain": 0.35,
+          "delay_cycles": 2
+        },
+        "adaptive_loop": {
+          "test_mae": 0.00825746707680334,
+          "val_mae": 0.008409285716697051,
+          "start_gain": 0.35,
+          "final_gain": 0.43748553128043033,
+          "delay_cycles": 2
+        }
+      }
+    },
+    {
+      "world": "chaotic",
+      "seed": 11,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.1582882604372936
+        },
+        "persistence": {
+          "test_mae": 0.28061093534504006
+        },
+        "linear_taps": {
+          "test_mae": 0.1232852396745575,
+          "val_mae": 0.12346941592911388
+        },
+        "fixed_loop": {
+          "test_mae": 0.03958489222784806,
+          "val_mae": 0.046575624428502736,
+          "gain": 0.7,
+          "delay_cycles": 2
+        },
+        "adaptive_loop": {
+          "test_mae": 0.08593328046848672,
+          "val_mae": 0.09700378550945582,
+          "start_gain": 0.7,
+          "final_gain": 0.16328896232089796,
+          "delay_cycles": 2
+        }
+      }
+    },
+    {
+      "world": "chaotic",
+      "seed": 17,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.16602282073560262
+        },
+        "persistence": {
+          "test_mae": 0.2906350373054639
+        },
+        "linear_taps": {
+          "test_mae": 0.12585288202421321,
+          "val_mae": 0.11854441439032325
+        },
+        "fixed_loop": {
+          "test_mae": 0.03850539001621112,
+          "val_mae": 0.04712414770202524,
+          "gain": 0.7,
+          "delay_cycles": 2
+        },
+        "adaptive_loop": {
+          "test_mae": 0.10698958155770646,
+          "val_mae": 0.09016366285945686,
+          "start_gain": 0.7,
+          "final_gain": 0.11123823436002603,
+          "delay_cycles": 2
+        }
+      }
+    },
+    {
+      "world": "chaotic",
+      "seed": 29,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.16475099360291934
+        },
+        "persistence": {
+          "test_mae": 0.2838572794786723
+        },
+        "linear_taps": {
+          "test_mae": 0.13305229540287017,
+          "val_mae": 0.12757190436954002
+        },
+        "fixed_loop": {
+          "test_mae": 0.09627329967905146,
+          "val_mae": 0.04423072532722289,
+          "gain": 0.7,
+          "delay_cycles": 2
+        },
+        "adaptive_loop": {
+          "test_mae": 0.11805931356148948,
+          "val_mae": 0.11060578057000317,
+          "start_gain": 0.7,
+          "final_gain": 0.16759331930961205,
+          "delay_cycles": 2
+        }
+      }
+    },
+    {
+      "world": "draining",
+      "seed": 11,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.07278370614177603
+        },
+        "persistence": {
+          "test_mae": 0.009082927516537232
+        },
+        "linear_taps": {
+          "test_mae": 0.008566654296647278,
+          "val_mae": 0.01274637529543813
+        },
+        "fixed_loop": {
+          "test_mae": 0.008635171266968495,
+          "val_mae": 0.01222966143910791,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.008561628916564097,
+          "val_mae": 0.012632376572257303,
+          "start_gain": 0.0,
+          "final_gain": 0.4529747875269527,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "draining",
+      "seed": 17,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.0732438292359281
+        },
+        "persistence": {
+          "test_mae": 0.009654200570774343
+        },
+        "linear_taps": {
+          "test_mae": 0.009228221444850285,
+          "val_mae": 0.012058435755352932
+        },
+        "fixed_loop": {
+          "test_mae": 0.009020991439382916,
+          "val_mae": 0.011917392265318615,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.008933919110368635,
+          "val_mae": 0.012657752434517633,
+          "start_gain": 0.0,
+          "final_gain": 0.45104212404646615,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "draining",
+      "seed": 29,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.07334091871234012
+        },
+        "persistence": {
+          "test_mae": 0.0090788979083412
+        },
+        "linear_taps": {
+          "test_mae": 0.008291050246034588,
+          "val_mae": 0.012647302661203492
+        },
+        "fixed_loop": {
+          "test_mae": 0.008237621603495527,
+          "val_mae": 0.011645904645409969,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.00812637433492871,
+          "val_mae": 0.012200237729367073,
+          "start_gain": 0.0,
+          "final_gain": 0.453878103603035,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "switch",
+      "seed": 11,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.15368882725647565
+        },
+        "persistence": {
+          "test_mae": 0.26682183612142757
+        },
+        "linear_taps": {
+          "test_mae": 0.15972138743590758,
+          "val_mae": 0.10829487291834976
+        },
+        "fixed_loop": {
+          "test_mae": 0.1334432358228659,
+          "val_mae": 0.08806413818552027,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.1426063390768824,
+          "val_mae": 0.09144795194887338,
+          "start_gain": 0.0,
+          "final_gain": -0.25140465980473803,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "switch",
+      "seed": 17,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.155956746341112
+        },
+        "persistence": {
+          "test_mae": 0.27413121010639746
+        },
+        "linear_taps": {
+          "test_mae": 0.16835706155146668,
+          "val_mae": 0.11903221340027659
+        },
+        "fixed_loop": {
+          "test_mae": 0.1300310927234799,
+          "val_mae": 0.09011687918627169,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.13764530123138213,
+          "val_mae": 0.09315642323647437,
+          "start_gain": 0.0,
+          "final_gain": -0.23132147586429325,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "switch",
+      "seed": 29,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.17365388574674978
+        },
+        "persistence": {
+          "test_mae": 0.30165535879366084
+        },
+        "linear_taps": {
+          "test_mae": 0.1916175076910609,
+          "val_mae": 0.12134737884015087
+        },
+        "fixed_loop": {
+          "test_mae": 0.1465816078997689,
+          "val_mae": 0.09416523287779392,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.15603315524967407,
+          "val_mae": 0.09703850418523761,
+          "start_gain": 0.0,
+          "final_gain": -0.3560883256406064,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "shuffled",
+      "seed": 11,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.1661192984165304
+        },
+        "persistence": {
+          "test_mae": 0.1948710788216109
+        },
+        "linear_taps": {
+          "test_mae": 0.16941967294087898,
+          "val_mae": 0.16023080334663775
+        },
+        "fixed_loop": {
+          "test_mae": 0.16705153605240058,
+          "val_mae": 0.15611323328165783,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.16896917236064704,
+          "val_mae": 0.1556553942962237,
+          "start_gain": 0.0,
+          "final_gain": 0.19155519291985376,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "shuffled",
+      "seed": 17,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.16298654787314412
+        },
+        "persistence": {
+          "test_mae": 0.2012620915438733
+        },
+        "linear_taps": {
+          "test_mae": 0.17063493729667745,
+          "val_mae": 0.17462770571290198
+        },
+        "fixed_loop": {
+          "test_mae": 0.1659001547455013,
+          "val_mae": 0.16568792831911042,
+          "gain": 0.0,
+          "delay_cycles": 1
+        },
+        "adaptive_loop": {
+          "test_mae": 0.1667957503253004,
+          "val_mae": 0.16692055909994793,
+          "start_gain": 0.0,
+          "final_gain": 0.13199796387338142,
+          "delay_cycles": 1
+        }
+      }
+    },
+    {
+      "world": "shuffled",
+      "seed": 29,
+      "length": 1050,
+      "noise_sd": 0.008,
+      "nodes": 50,
+      "protocol": "train 60%, validate 20%, test 20%; 80-step wash-in",
+      "arms": {
+        "clock_mean": {
+          "test_mae": 0.15787141941924704
+        },
+        "persistence": {
+          "test_mae": 0.20453347735646446
+        },
+        "linear_taps": {
+          "test_mae": 0.1591161386756962,
+          "val_mae": 0.16108568365380552
+        },
+        "fixed_loop": {
+          "test_mae": 0.18442205282336555,
+          "val_mae": 0.14886695197851355,
+          "gain": 0.9,
+          "delay_cycles": 3
+        },
+        "adaptive_loop": {
+          "test_mae": 0.1582479838299407,
+          "val_mae": 0.1571784911733243,
+          "start_gain": 0.9,
+          "final_gain": -0.01806404918599625,
+          "delay_cycles": 3
+        }
+      }
+    }
+  ]
+}
