@@ -1,0 +1,29 @@
+name: Gate 2 causal and symmetry audit
+on:
+  push:
+    paths:
+      - 'gate2.py'
+      - 'tests/test_gate2.py'
+      - 'gate1.py'
+      - 'virtualtuft.py'
+      - '.github/workflows/gate2.yml'
+  workflow_dispatch:
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - run: python -m unittest discover -s tests -v
+      - name: Independent smoke test of Hénon control
+        run: |
+          OPENBLAS_NUM_THREADS=1 python - <<'PY'
+          from gate2 import trial
+          r = trial('henon', 103, 480, .02)
+          assert r['arms']['stateless_biased']['test_mae'] >= 0
+          assert r['arms']['combined_biased']['gain'] in (0.0, .35, .7, .9)
+          print('Gate 2 smoke test passed')
+          PY
