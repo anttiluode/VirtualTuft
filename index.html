@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VirtualTuft — Time as memory</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1220;--panel:#151f31;--edge:#2b3c54;--text:#eaf0f8;--muted:#a5b5c9;--blue:#65c2e9;--gold:#ffc775;--green:#8be1bd;--pink:#f7a0b2}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172b45,var(--bg) 70%);color:var(--text);font-family:system-ui,Segoe UI,sans-serif}
+main{max-width:1200px;margin:auto;padding:28px 20px 65px}header{margin-bottom:22px}h1{margin:0 0 4px;font-size:clamp(2rem,5vw,3.4rem);letter-spacing:-.045em}h2{font-size:1rem;margin:0 0 12px;letter-spacing:.01em}p{line-height:1.55;color:var(--muted)}.eyebrow{color:var(--green);text-transform:uppercase;letter-spacing:.17em;font-size:.75rem;font-weight:700}.intro{max-width:810px;margin:9px 0 0;font-size:1.03rem}
+.layout{display:grid;grid-template-columns:295px minmax(0,1fr);gap:16px}.panel{background:rgba(21,31,49,.97);border:1px solid var(--edge);border-radius:17px;padding:20px;box-shadow:0 7px 28px #0002}.controls{display:grid;gap:13px}label{font-size:.84rem;color:var(--muted);display:block}label b{float:right;font-weight:550;color:var(--text)}select,input[type=range],button{width:100%}select,button{background:#202f47;color:var(--text);border:1px solid #405771;border-radius:9px;padding:9px 10px;font-size:.9rem}select:focus,button:focus,input:focus{outline:2px solid var(--green);outline-offset:2px}button{cursor:pointer;font-weight:650;transition:background .15s}button:hover{background:#30435f}.buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:7px}.buttons button:first-child{background:#176d74;border-color:#31969c}input[type=range]{accent-color:var(--blue);margin:6px 0 0}input[type=checkbox]{accent-color:var(--green)}.check{display:flex;align-items:center;gap:10px}.check input{width:17px;height:17px;margin:0}.check label{display:inline}.viz{display:grid;gap:16px}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.metric{border:1px solid var(--edge);border-radius:10px;padding:12px;background:#101929}.metric .value{font-size:1.35rem;font-weight:750;font-variant-numeric:tabular-nums}.metric .label{font-size:.71rem;color:var(--muted);margin-top:3px}.legend{display:flex;flex-wrap:wrap;gap:16px;font-size:.78rem;color:var(--muted);margin:-4px 0 9px}.dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px}.dot.blue{background:var(--blue)}.dot.gold{background:var(--gold)}.dot.green{background:var(--green)}canvas{width:100%;height:auto;display:block;background:#0c1524;border:1px solid #27364c;border-radius:10px}.small{font-size:.81rem;color:var(--muted);margin:9px 0 0}.footer{max-width:900px;margin:20px auto 0;padding:0 5px;font-size:.83rem}.footer strong{color:var(--text)}a{color:var(--green)}.pulse{width:14px;height:14px;display:inline-block;background:var(--gold);border-radius:50%;box-shadow:0 0 16px var(--gold);vertical-align:middle;margin-right:8px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.controls{grid-template-columns:repeat(2,minmax(0,1fr));align-items:end}.buttons{grid-column:1/-1}}@media(max-width:540px){main{padding:17px 12px}.controls{grid-template-columns:1fr}.metrics{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="eyebrow">The world drips. The loop remembers.</div><h1>VirtualTuft</h1>
+<p class="intro">A virtual laboratory: one nonlinear node, 50 moments within its feedback loop, and a readout that learns to predict the <em>next</em> drip interval. Turn the knobs and watch the past return. Completely offline; no libraries or servers.</p></header>
+<div class="layout">
+<section class="panel"><h2>Turn Shaw's knobs</h2><div class="controls">
+<div><label for="world">Synthetic world</label><select id="world"><option value="draining">Coffee filter — slowing, refills</option><option value="periodic">Periodic logistic regime</option><option value="period2">Period-two logistic regime</option><option value="chaotic">Chaotic logistic regime</option><option value="switch">Periodic → period-two → chaotic</option><option value="shuffled">Shuffled chaotic control</option></select></div>
+<div><label for="gain">Feedback strength <b id="gainValue"></b></label><input id="gain" type="range" min="-0.9" max="0.95" step="0.05" value="0.55"></div>
+<div><label for="delay">Delay (whole cycles) <b id="delayValue"></b></label><input id="delay" type="range" min="1" max="6" step="1" value="1"></div>
+<div><label for="leak">Node response / leak <b id="leakValue"></b></label><input id="leak" type="range" min="0.10" max="1" step="0.05" value="0.70"></div>
+<div><label for="noise">Input noise <b id="noiseValue"></b></label><input id="noise" type="range" min="0" max="0.08" step="0.004" value="0.008"></div>
+<div><label for="speed">Cycles / frame <b id="speedValue"></b></label><input id="speed" type="range" min="1" max="12" step="1" value="2"></div>
+<div class="check"><input type="checkbox" id="readout" checked><label for="readout">Learn next-interval readout</label></div>
+<div class="check"><input type="checkbox" id="adapt"><label for="adapt">Adapt feedback from sensory echo</label></div>
+<div class="buttons"><button id="play">Pause</button><button id="step">Single step</button><button id="reset">Reset</button><button id="export">Export trace JSON</button></div>
+</div></section>
+<div class="viz">
+<section class="panel"><div class="metrics">
+<div class="metric"><div class="value" id="current">—</div><div class="label">Latest interval</div></div>
+<div class="metric"><div class="value" id="forecast">—</div><div class="label">Forecast of next</div></div>
+<div class="metric"><div class="value" id="error">—</div><div class="label">Recent forecast MAE</div></div>
+<div class="metric"><div class="value" id="cycle">0</div><div class="label">Observed intervals</div></div>
+</div><h2 style="margin-top:22px">Observed intervals and one-step-ahead forecasts</h2>
+<div class="legend"><span><span class="dot gold"></span>Observed interval</span><span><span class="dot blue"></span>Forecast made one event earlier</span><span><span class="dot green"></span>Persistence baseline</span></div>
+<canvas id="signal" width="880" height="220" aria-label="Plot of observed and predicted intervals"></canvas>
+<p class="small" id="detail">Prediction is scored only after the next interval arrives.</p></section>
+<section class="panel"><h2>The delay becomes 50 virtual nodes</h2><canvas id="heat" width="880" height="290" aria-label="Virtual node history heat map"></canvas>
+<p class="small">Columns show the 50 successive time slots of <strong>one</strong> nonlinear unit; rows are successive input cycles (newest at bottom). They are not 50 physical neurons, or a spatial cortical field.</p></section>
+</div></div>
+<p class="footer"><strong>What this does and does not show.</strong> The input worlds are simulations, not recordings from Shaw's faucet. The blue readout is trained online from earlier observed intervals; its future predictions are evaluated causally. The optional feedback adaptation is a local sensory-echo correlation rule, not evidence of biological myelin or apical-tuft plasticity. This visual sandbox is separate from the frozen Python benchmark in the repository. <a href="https://github.com/anttiluode/VirtualTuft">Source and benchmark</a>.</p>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id), N=50, trace=[], heat=[], gains=[];
+let data=[],cursor=0,playing=true,state=Array(N).fill(0),history=[],gain=.55,mask=[],weights=[],lastPred=null,lastU=null;
+function rng32(seed){return function(){let t=seed+=0x6D2B79F5;t=Math.imul(t^(t>>>15),t|1);t^=t+Math.imul(t^(t>>>7),t|61);return ((t^(t>>>14))>>>0)/4294967296;}}
+function gaussian(random){return Math.sqrt(-2*Math.log(Math.max(1e-12,random())))*Math.cos(2*Math.PI*random());}
+function logistic(n,r,random){let x=.15+random()*.70,out=[];for(let t=0;t<n+220;t++){x=r*x*(1-x);if(t>=220)out.push(x);}return out;}
+function worldData(kind,noise,n=6000){const random=rng32(1004),out=[];let x=[];
+ if(['periodic','period2','chaotic'].includes(kind))x=logistic(n,{periodic:2.9,period2:3.2,chaotic:3.9}[kind],random);
+ else if(kind==='draining')x=Array.from({length:n},(_,i)=>1-Math.exp(-(i%390)/120));
+ else if(kind==='switch')for(let p=0;p<n;p+=450){const r=[2.9,3.2,3.9][Math.floor(p/450)%3];x.push(...logistic(Math.min(450,n-p),r,random));}
+ else {x=logistic(n,3.9,random);for(let i=x.length-1;i>0;i--){let j=Math.floor(random()*(i+1));[x[i],x[j]]=[x[j],x[i]];}}
+ for(let i=0;i<x.length;i++)out.push(Math.max(.05,Math.min(1,.25+.60*x[i]+noise*gaussian(random))));return out;}
+function settings(){return {world:$('world').value,feedback:+$('gain').value,delay:+$('delay').value,leak:+$('leak').value,noise:+$('noise').value,speed:+$('speed').value};}
+function updateLabels(){for(const id of ['gain','delay','leak','noise','speed'])$(id+'Value').textContent=$(id).value;}
+function reset(){const s=settings(),rnd=rng32(2026);mask=Array.from({length:N},()=>rnd()<.5?-1:1);data=worldData(s.world,s.noise);cursor=0;state=Array(N).fill(0);history=[];gain=s.feedback;weights=Array(N+1).fill(0);weights[0]=.55;trace.length=0;heat.length=0;gains.length=0;lastPred=null;lastU=null;draw();}
+function step(){if(cursor>=data.length){playing=false;return;}const s=settings(),u=data[cursor];
+ if(lastPred!==null){const e=u-lastPred,prev=heat[heat.length-1];if($('readout').checked&&prev){let norm=1;for(let j=0;j<N;j++)norm+=prev[j]*prev[j];const eta=.14/norm;weights[0]+=.12*eta*e;for(let j=0;j<N;j++)weights[j+1]+=eta*e*prev[j];}}
+ trace.push({observed:u,forecast:lastPred,hold:lastU});if(trace.length>2000)trace.shift();
+ const d=history.length>=s.delay?history[history.length-s.delay]:Array(N).fill(0);
+ if($('adapt').checked){let echo=0;for(let i=0;i<N;i++)echo+=mask[i]*d[i];echo/=N;gain=Math.max(-.95,Math.min(.95,gain+.18*(u-(.55+gain*echo))*echo));}
+ else gain=s.feedback;
+ const fresh=Array(N),leak=s.leak;let prev=state[N-1];for(let i=0;i<N;i++){let drive=1.6*mask[i]*(u-.55)+.5*prev+gain*d[i];fresh[i]=(1-leak)*state[i]+leak*Math.tanh(drive);prev=fresh[i];}
+ state=fresh;history.push([...fresh]);while(history.length>6)history.shift();
+ lastPred=weights[0];for(let j=0;j<N;j++)lastPred+=weights[j+1]*state[j];lastPred=Math.max(.05,Math.min(1,lastPred));
+ lastU=u;gains.push(gain);heat.push([...state]);if(heat.length>90)heat.shift();cursor++;
+}
+function plot(){const c=$('signal'),g=c.getContext('2d'),w=c.width,h=c.height;g.clearRect(0,0,w,h);g.fillStyle='#0c1524';g.fillRect(0,0,w,h);
+ const arr=trace.slice(-180),pad=22;g.strokeStyle='#354359';g.lineWidth=1;for(let k=0;k<=4;k++){let y=pad+(h-2*pad)*k/4;g.beginPath();g.moveTo(pad,y);g.lineTo(w-pad,y);g.stroke();}
+ const drawLine=(key,color,width)=>{g.strokeStyle=color;g.lineWidth=width;g.beginPath();let active=false;for(let i=0;i<arr.length;i++){let v=arr[i][key];if(v===null||v===undefined){active=false;continue;}let x=pad+(w-2*pad)*(i/Math.max(1,arr.length-1));let y=h-pad-(Math.max(.05,Math.min(1,v))-.05)/.95*(h-2*pad);if(!active)g.moveTo(x,y);else g.lineTo(x,y);active=true;}g.stroke();};
+ drawLine('hold','#8be1bd',1.5);drawLine('observed','#ffc775',2);drawLine('forecast','#65c2e9',2);
+ g.font='12px sans-serif';g.fillStyle='#9baec8';g.fillText('1.00',3,18);g.fillText('0.05',3,h-5);
+}
+function drawHeat(){const c=$('heat'),g=c.getContext('2d');g.fillStyle='#0c1524';g.fillRect(0,0,c.width,c.height);const rows=heat.length,ch=c.height/90,cw=c.width/N;
+ for(let r=0;r<rows;r++){const arr=heat[r];for(let j=0;j<N;j++){const x=arr[j],a=Math.min(1,Math.abs(x));g.fillStyle=x>=0?`rgba(91,197,224,${.12+.88*a})`:`rgba(252,146,118,${.12+.88*a})`;g.fillRect(j*cw,(90-rows+r)*ch,cw+1,ch+1);}}
+ g.fillStyle='#c3cfdf';g.font='12px sans-serif';g.fillText('Past cycles',7,16);g.fillText('Now',7,c.height-8);g.fillText('slot 1',8,c.height-25);g.fillText('slot 50',c.width-64,c.height-25);
+}
+function draw(){updateLabels();plot();drawHeat();$('current').textContent=lastU==null?'—':lastU.toFixed(3);$('forecast').textContent=lastPred==null?'—':lastPred.toFixed(3);$('cycle').textContent=String(cursor);
+ const last=trace.slice(-120).filter(v=>v.forecast!==null);$('error').textContent=last.length? (last.reduce((a,v)=>a+Math.abs(v.observed-v.forecast),0)/last.length).toFixed(3):'—';
+ $('detail').textContent=`Current loop feedback ${gain.toFixed(3)} · ${cursor} synthetic intervals observed · prediction is always evaluated after the subsequent observation.`;
+ $('play').textContent=playing?'Pause':'Resume';}
+function animate(){if(playing){for(let i=0;i<+$('speed').value;i++)step();draw();}requestAnimationFrame(animate);}
+$('play').onclick=()=>{playing=!playing;draw();};$('step').onclick=()=>{playing=false;step();draw();};$('reset').onclick=()=>reset();
+$('export').onclick=()=>{const packet={experiment:'VirtualTuft visual sandbox',config:settings(),note:'time slots, not spatial pixels; online readout differs from Python ridge benchmark',trace,virtual_nodes:heat,feedback_last_90:gains.slice(-90)};const blob=new Blob([JSON.stringify(packet,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='virtualtuft_trace.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
+for(const id of ['world','delay','leak','noise'])$(id).addEventListener('change',reset);
+$('gain').addEventListener('input',()=>{if(!$('adapt').checked)gain=+$('gain').value;updateLabels();});
+$('readout').addEventListener('change',()=>{weights=Array(N+1).fill(0);weights[0]=.55;});
+$('adapt').addEventListener('change',()=>{gain=+$('gain').value;});
+reset();requestAnimationFrame(animate);
+</script>
+</body></html>
